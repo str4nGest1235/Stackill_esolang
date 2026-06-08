@@ -1,0 +1,40 @@
+Stackill Documentation
+
+Stackill is an esoteric programming language that uses a stack, registers and functions for storing values.
+A stack is an data structure where you add (push) and remove (pop) elements in last place.
+Registers can store a value and functions are parts of code that can be called.
+Registers and functions can have a name of 1 lowercase letter from g to z
+The program is executed as a string of characters (called tiles), so newlines aren't necessery.
+There's a program counter (pc) that points to a tile in the program,
+and a program tile (pt) that is the tile that the pc is pointing to.
+there are 3 types of value: integers, floats and strings
+
+this is the list of commands:
+
+a sequence of hex digits (123456789abcdef) pushes the decimal rapresentetion of that number (the pc will cycle for every consecutive digit);
+a double/single quote ("/') marks the start or the end of a string (the pc will cycle for every tile). If the pt is "/', the string of tiles will be pushes on the stack;
+'.' prints the popped value, printing a newline after;
+',' prints the popped value, without printing the newline;
+':' prints the ascii character with the value of the popped value if it is an int. If it is a string of lengh 1, it prints the ascii value;
+'X' pops a value from the stack and does nothing else;
+'?' pushes the integer input from the user (showing a green indicator '?:');
+'F' pops a value, rounds it down and pushes it back;
+'$' pushes the string input from the user (showing a green indicator '$:');
+'_' pushes the float input from the user (showing a green indicator '$:')
+'F' pops a value and pushes its float form;
+'D' duplicates the last value on the stack;
+'R' reverses the stack;
+'`' marks the start and the end of a comment
+'+','-','*','/','^' pops two values and operate them, then pushes the result (1st value [operator] 2nd value);
+'%' is the mod operator, and its result is the remain of the division (10 % 3 = 1 → 10 / 3 = 9 R. 1);
+'&' (and) ,'|' (or) works as well;
+'=','<','>' pushes 1 if the condition is met, else 0;
+'!' pops a value and pushes its negation;
+'J' pops a value and check if is 0, if so jumps the next tile
+J{...} pops a value and check if is 0, if so jumps the tiles in the braces
+']' jumps backward until [ , creating a loop (to use in pair with [);
+';' stops the execution of the program;
+'#' pops a value an assigns it to the register with the name of the next tile (e.g. #r);
+'@' pops a string value an assigns it to the function with the name of th next tile (e.g. @m);
+'N' pushes a random float value from 0 to 0.99… ;
+a lowercase letter from g to z pushes its value if it is a register, if it is a function will be run instead.
